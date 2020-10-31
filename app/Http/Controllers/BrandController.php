@@ -13,7 +13,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return view('brands.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('brands.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('brands.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('brands.edit');
     }
 
     /**
