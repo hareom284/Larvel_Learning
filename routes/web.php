@@ -13,15 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','MainController@welcome')->name("homepage");
+
 
 Route::get('testing','MainController@testing')->name("test");
 
-Route::get('index1','MainController@index')->name('index1');
+Route::get('/','MainController@index')->name('index1');
 
-Route::get('index2','MainController@index1')->name('index2');
-
-Route::get('updates','MainController@updates')->name('updates');
 
 Route::resource('brand', 'BrandController');
 
