@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Brand;
 
 class BrandController extends Controller
 {
@@ -12,8 +13,9 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('brands.index');
+    {  
+        $brands = Brand::all();
+        return view('brands.index',compact('brands'));
     }
 
     /**
@@ -33,8 +35,33 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {  
+        // dd($request);
+        $request->validate([
+            "name" =>"required|min:4",
+            "photo" =>"required",
+        ]);
+
+        if($request->file()) {
+            // 624872374523_a.jpg
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            // brandimg/624872374523_a.jpg
+            $filePath = $request->file('photo')->storeAs('brandimg', $fileName, 'public');
+
+            $paths= '/storage/'.$filePath;
+            
+        
+        }
+        // dd($paths);
+        // store
+        $brand = new Brand;
+        $brand->name = $request->name;
+        $brand->photo = $paths;
+        $brand->save();
+
+        // redirect
+        return redirect()->route('brand.index');
     }
 
     /**
@@ -44,8 +71,8 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        return view('brands.show');
+    {   $brand = Brand::find($id);
+        return view('brands.show',compact('brand'));
     }
 
     /**
@@ -55,8 +82,9 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        return view('brands.edit');
+    {   
+        $brand = Brand::find($id);
+        return view('brands.edit',compact('brand'));
     }
 
     /**
@@ -68,7 +96,35 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "name" => "required|min:5",
+            "photo" => "sometimes|required|mimes:jpeg,bmp,png", // a.jpg
+            "oldphoto" => "required"
+        ]);
+
+        // if include file, upload
+        if($request->file()) {
+            // delete olo photo
+
+            // 624872374523_a.jpg
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            // brandimg/624872374523_a.jpg
+            $filePath = $request->file('photo')->storeAs('brandimg', $fileName, 'public');
+
+            $path = '/storage/'.$filePath;
+        }else{
+            $path = $request->oldphoto;
+        }
+
+        // update
+        $brand = Brand::find($id);
+        $brand->name = $request->name;
+        $brand->photo = $path;
+        $brand->save();
+
+        // redirect
+        return redirect()->route('brand.index');
     }
 
     /**
@@ -79,6 +135,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->delete();
+        return redirect()->route('brand.index');
     }
 }

@@ -7,7 +7,7 @@
             <h1> <i class="icofont-list"></i> Brand Form </h1>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
-            <a href="brand.php" class="btn btn-outline-primary">
+            <a href="{{route('brand.index')}}" class="btn btn-outline-primary">
                 <i class="icofont-double-left"></i> List
             </a>
         </ul>
@@ -16,19 +16,25 @@
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
-                    
-                        
+                       <form method="POST" action="{{route('brand.store')}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group row">
                             <label for="name_id" class="col-sm-2 col-form-label"> Name </label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="name_id" name="name">
+                              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name_id" name="name">
+                              @error('name')
+                                <div class="alert alert-danger bg-white border-0">{{ $message }}</div>
+                              @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="photo_id" class="col-sm-2 col-form-label"> Photo </label>
                             <div class="col-sm-10">
-                              <input type="file" id="photo_id" name="photo">
+                              <input type="file" id="photo_id" name="photo" class="@error('photo') is-invalid @enderror">
+                              @error('photo')
+                                <div class="alert alert-danger bg-white border-0">{{ $message }}</div>
+                              @enderror
                             </div>
                         </div>
 
@@ -40,6 +46,8 @@
                                 </button>
                             </div>
                         </div>
+
+                       </form>
 
                     
                 </div>

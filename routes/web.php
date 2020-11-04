@@ -24,3 +24,12 @@ Route::get('index2','MainController@index1')->name('index2');
 Route::get('updates','MainController@updates')->name('updates');
 
 Route::resource('brand', 'BrandController');
+
+Route::resource('category', 'CategoryController');
+
+Route::resource('subcategory', 'SubcategoryController');
+
+Route::resource('item', 'ItemController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

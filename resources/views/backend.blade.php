@@ -126,7 +126,7 @@
         </li>
 
         <li>
-            <a class="app-menu__item" href="order.php">
+            <a class="app-menu__item" href="#">
                 <i class="app-menu__icon icofont-prestashop"></i>
                 <span class="app-menu__label">
                     Order
