@@ -44,6 +44,8 @@
           </a>
         </div>
       </div>
+</div>
+</div>
         <!-- /.card -->
     <div class="row">
      @foreach ($items as $item)

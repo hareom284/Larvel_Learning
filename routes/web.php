@@ -27,6 +27,6 @@ Route::resource('category', 'CategoryController');
 Route::resource('subcategory', 'SubcategoryController');
 
 Route::resource('item', 'ItemController');
-Auth::routes();
+Auth::routes(['register'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
