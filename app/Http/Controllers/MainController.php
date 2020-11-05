@@ -15,10 +15,7 @@ class MainController extends Controller
        return view('testing');
    }
 
-   public function index()
-   {
-       return view('index1');
-   }
+   
    public function index1()
    {
        return view('index2');

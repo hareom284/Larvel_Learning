@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('testing','MainController@testing')->name("test");
 
-Route::get('/','MainController@index')->name('index1');
+Route::get('/','FrontendController@home')->name('mainpage');
 
 
 Route::resource('brand', 'BrandController');
