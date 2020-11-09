@@ -8,9 +8,30 @@
       <div class="col-lg-3">
         <h1 class="my-4">Shop Name</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item active">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+         
+<div class="accordion mt-4" id="accordionExample">
+  @php $i=1; @endphp
+  @foreach($categories as $category)
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne{{$i}}" aria-expanded="true" aria-controls="collapseOne{{$i}}">
+          {{$category->name}}
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne{{$i}}" class="collapse @if($loop->first) {{'show'}} @endif" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        @foreach($category->subcategories as $subcategory)
+        <a class="btn btn-link subcategory" href="{{ route('itembysubcategory',$subcategory->id) }}" data-id="">{{$subcategory->name}}</a>
+        @endforeach
+      </div>
+    </div>
+  </div>
+  @php $i++; @endphp
+  @endforeach
+</div>
         </div>
       </div>
 
@@ -47,7 +68,7 @@
 </div>
 </div>
         <!-- /.card -->
-    <div class="row">
+    <div class="row offset-3">
      @foreach ($items as $item)
          
      
@@ -59,6 +80,7 @@
                 <h4>{{$item->price}}MMK</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
+            <a href="{{route('itemdetail',$item->id)}}" class="btn btn-success"> Details</a>
         </div>
      </div>
      @endforeach

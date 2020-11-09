@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-use Illuminate\Support\Faceades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -51,6 +53,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
+        
 
         // assign user as customer
         $user->assignRole('customer');

@@ -35,10 +35,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{{route('signin')}}">Sign In</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="{{ route('signup') }}">Sing Up</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link text-primary" href="#" ><ion-icon name="cart-outline" size="large"></ion-icon>1</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
@@ -62,6 +65,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
 </body>
 
